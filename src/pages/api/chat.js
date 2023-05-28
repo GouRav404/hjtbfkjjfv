@@ -14,7 +14,8 @@ export default async function handler(req, res) {
 
       
        // Modify the payload to include the name
-      body.messages.push({ role: 'assistant', content: 'My name is Sriman' });
+      body.messages.push({ role: 'user', content: 'What is your name?' });
+      body.messages.push({ role: 'assistant', content: 'My name is Sriman.' });
 
       const response = await axios.post(url, body, { headers });
 
