@@ -8,10 +8,11 @@ export default async function handler(req, res) {
       const { body } = req;
       const url = 'https://api.openai.com/v1/chat/completions';
       const headers = {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
         'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
       };
 
+      // Modify the payload to include the user's message and assistant's reply
       const payload = {
         messages: [
           { role: 'system', content: 'You are a user' },
