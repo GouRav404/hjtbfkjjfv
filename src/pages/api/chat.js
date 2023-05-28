@@ -12,12 +12,11 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
       };
 
-      
-       // Modify the payload to include the name
+      // Modify the payload to include the user's message and assistant's reply
       body.messages.push({ role: 'user', content: 'What is your name?' });
       body.messages.push({ role: 'assistant', content: 'My name is Sriman.' });
 
-      const response = await axios.post(url, body, { headers });
+      const response = await axios.post(url, { messages: body.messages }, { headers });
 
       res.status(200).json(response.data);
     } catch (error) {
