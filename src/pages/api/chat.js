@@ -16,11 +16,11 @@ export default async function handler(req, res) {
       body.messages.push({ role: 'user', content: 'What is your name?' });
       body.messages.push({ role: 'assistant', content: 'My name is Sriman.' });
 
-      const response = await axios.post(url, body, { headers });
+      const response = await axios.post(url, { messages: body.messages }, { headers });
 
-
-
-      res.status(200).json(response.data);
+      const { choices } = response.data;
+      const { text } = choices[choices.length - 1].message;
+      res.status(200).json({ message: text });
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: 'Something went wrong' });
